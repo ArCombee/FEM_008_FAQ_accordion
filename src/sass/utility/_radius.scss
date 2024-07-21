@@ -1,0 +1,84 @@
+@use "sass:map";
+@use "../config/config" as cfg;
+
+@each $spacing, $space in map-get(cfg.$tokens, "spacing") {
+  .radius {
+    &-#{$spacing} {
+      border-radius: #{$space};
+    }
+    &-t {
+      &-#{$spacing} {
+        border-start-start-radius: #{$space};
+        border-start-end-radius: #{$space};
+      }
+      &l-#{$spacing} {
+        border-start-start-radius: #{$space};
+      }
+      &r-#{$spacing} {
+        border-start-end-radius: #{$space};
+      }
+    }
+    &-b {
+      &-#{$spacing} {
+        border-end-start-radius: #{$space};
+        border-end-end-radius: #{$space};
+      }
+      &l-#{$spacing} {
+        border-end-start-radius: #{$space};
+      }
+      &r-#{$spacing} {
+        border-end-end-radius: #{$space};
+      }
+    }
+    &-l {
+      &-#{$spacing} {
+        border-start-start-radius: #{$space};
+        border-end-start-radius: #{$space};
+      }
+    }
+    &-r {
+      &-#{$spacing} {
+        border-end-end-radius: #{$space};
+        border-start-end-radius: #{$space};
+      }
+    }
+  }
+}
+
+.radius {
+  &-circle {
+    border-radius: 50%;
+  }
+  &-full {
+    border-radius: 9999px;
+
+    &-tl {
+      border-start-start-radius: 9999px;
+    }
+    &-tr {
+      border-start-end-radius: 9999px;
+    }
+    &-bl {
+      border-end-start-radius: 9999px;
+    }
+    &-br {
+      border-end-end-radius: 9999px;
+    }
+    &-l {
+      border-start-start-radius: 9999px;
+      border-end-start-radius: 9999px;
+    }
+    &-r {
+      border-end-end-radius: 9999px;
+      border-start-end-radius: 9999px;
+    }
+    &-t {
+      border-start-start-radius: 9999px;
+      border-start-end-radius: 9999px;
+    }
+    &-b {
+      border-end-start-radius: 9999px;
+      border-end-end-radius: 9999px;
+    }
+  }
+}

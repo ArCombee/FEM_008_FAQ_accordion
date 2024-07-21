@@ -1,0 +1,23 @@
+@use "sass:meta";
+@use "./abstract/" as *;
+
+@layer global, composition, utility, block, exception, override;
+
+@layer global {
+  @include meta.load-css("./global/");
+}
+@layer composition {
+  @include meta.load-css("./composition/");
+}
+@layer utility {
+  @include meta.load-css("./utility/");
+}
+@layer block {
+  @include meta.load-css("./block/");
+}
+@layer exception {
+  @include meta.load-css("./exception/");
+}
+@layer override {
+  @include meta.load-css("./override");
+}

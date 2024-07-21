@@ -1,0 +1,59 @@
+{
+  "name": "gulp_kit",
+  "version": "1.0.0",
+  "description": "Default GULP work kit with SASS and optimizing for CSS, IMAGES, HTML and Javascript, ",
+  "main": "gulpfile.js",
+  "type": "module",
+  "scripts": {
+    "build": "gulp build --production",
+    "sprite-1": "gulp svg",
+    "sprite-2": "svg-sprite-generate -d public/assets/images -o public/assets/images/sprite.svg",
+    "sprite": "npm-run-all --serial sprite-1 sprite-2",
+    "server": "gulp srv",
+    "start": "gulp"
+  },
+  "keywords": [],
+  "author": "Arjen Combee (info@arjencombee.nl)",
+  "license": "ISC",
+  "browserslist": [
+    "defaults",
+    "last 2 versions, not dead, > 0.2%",
+    "maintained node versions"
+  ],
+  "postcss": {
+    "syntax": "postcss-scss",
+    "map": false,
+    "plugins": {
+      "css-declaration-sorter": {
+        "order": "smacss"
+      }
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
+    "autoprefixer": "^10.4.19",
+    "browser-sync": "^3.0.2",
+    "css-declaration-sorter": "^7.2.0",
+    "cssnano": "^7.0.4",
+    "del": "^7.1.0",
+    "gulp": "^5.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^9.1.0",
+    "gulp-mode": "^1.1.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-postcss": "^10.0.0",
+    "gulp-purgecss": "^6.0.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-svgo": "^2.2.1",
+    "gulp-terser": "^2.1.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-combine-media-query": "^1.0.1",
+    "postcss-sort-media-queries": "^5.2.0",
+    "sass": "^1.77.8"
+  }
+}

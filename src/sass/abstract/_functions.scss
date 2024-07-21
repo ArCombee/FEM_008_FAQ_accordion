@@ -1,0 +1,109 @@
+@use "sass:math";
+@use "sass:list";
+@use "sass:map";
+@use "sass:color";
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, ($number * 0)+ 1);
+  }
+  @return $number;
+}
+
+@function round($number, $decimals: 0) {
+  $n: 1;
+  @if $decimals > 0 {
+    @for $i from 1 through $decimals {
+      $n: $n * 10;
+    }
+  }
+  @return math.div(math.round($number * $n), $n);
+}
+
+// Number devide by 2
+@function h($value) {
+  @return math.div($value, 2);
+}
+
+@function n($value) {
+  @return $value * -1;
+}
+
+@function rem($px) {
+  $rems: math.div($px, 16px) * 1rem;
+  @return $rems;
+}
+
+@function em($px) {
+  $ems: math.div($px, 16px) * 1em;
+  @return $ems;
+}
+
+// Creates darker version of color by adding black
+@function shade($color: white, $percentage: 50%) {
+  @return adjust-color($color, $blackness: $percentage);
+}
+// Creates lighter version of color by adding white
+@function tint($color: black, $percentage: 50%) {
+  @return adjust-color($color, $whiteness: $percentage);
+}
+// Replace text
+@function str-replace($string, $search, $replace: "") {
+  $string: #{$string};
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}
+// Calculate ideal line height
+
+@function generate-font-sizes($ratio: 1.25, $number: 3, $prefix: "") {
+  $font-size: ();
+  @for $i from ($number * -1) through $number {
+    $fs: math.pow($ratio, $i) * 1rem;
+    $fs: round($fs, 2);
+    $font-size: map.set($font-size, $prefix + $i, $fs);
+  }
+  @return $font-size;
+}
+
+@function fluid(
+  $min-size,
+  $max-size,
+  $min-breakpoint: 375px,
+  $max-breakpoint: 1440px,
+  $unit: vw,
+  $dec: 4
+) {
+  $slope: math.div($max-size - $min-size, $max-breakpoint - $min-breakpoint);
+  $slope-to-unit: round($slope * 100, $dec);
+  $intercept-rem: round(rem($min-size - $slope * $min-breakpoint), $dec);
+  $min-size-rem: round(rem($min-size), $dec);
+  $max-size-rem: round(rem($max-size), $dec);
+  @return clamp(
+    #{$min-size-rem},
+    #{$slope-to-unit}#{$unit} + #{$intercept-rem},
+    #{$max-size-rem}
+  );
+}
+
+@function create-scale($ratio: 1.25, $start: -3, $end: 5) {
+  $scale: "";
+  @for $i from $start through $end {
+    $value: round(math.pow($ratio, $i), 3);
+    @if ($scale == "") {
+      $scale: $value;
+    } @else {
+      $scale: list.append($scale, $value, comma);
+    }
+  }
+  @return $scale;
+}

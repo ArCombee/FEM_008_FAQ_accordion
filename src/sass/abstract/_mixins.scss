@@ -1,0 +1,9 @@
+@use "../config/config" as cfg;
+
+$breakpoints: map-get(cfg.$tokens, "breakpoint");
+@mixin media($bp) {
+  $size: map-get($breakpoints, $bp);
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}

@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "../config/config" as cfg;
+
+@each $shade, $color in map-get(cfg.$tokens, "color") {
+  .text {
+    &-#{$shade} {
+      color: #{$color};
+    }
+  }
+  .bg {
+    &-#{$shade} {
+      border-color: #{$color};
+    }
+  }
+}

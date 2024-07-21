@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "../config/config" as cfg;
+
+@each $size, $value in map-get(cfg.$tokens, "font-size") {
+  .fs {
+    &-#{$size} {
+      font-size: #{$value};
+    }
+  }
+}
+
+@each $weight, $value in map-get(cfg.$tokens, "font-weight") {
+  .fw {
+    &-#{$weight} {
+      font-weight: #{$value};
+    }
+  }
+}
+
+@each $stack, $font in map-get(cfg.$tokens, "font-stack") {
+  .ff {
+    &-#{$stack} {
+      font-family: #{$font};
+    }
+  }
+}

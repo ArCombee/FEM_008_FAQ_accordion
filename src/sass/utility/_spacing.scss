@@ -1,0 +1,57 @@
+@use "sass:map";
+@use "../config/config" as cfg;
+
+@each $spacing, $space in map-get(cfg.$tokens, "spacing") {
+  .m {
+    &a-#{$spacing} {
+      margin-inline: auto;
+      margin-block: #{$space};
+    }
+    &-#{$spacing} {
+      margin: #{$space};
+    }
+    &t-#{$spacing} {
+      margin-block-start: #{$space};
+    }
+    &b-#{$spacing} {
+      margin-block-end: #{$space};
+    }
+    &l-#{$spacing} {
+      margin-inline-start: #{$space};
+    }
+    &r-#{$spacing} {
+      margin-inline-end: #{$space};
+    }
+    &x-#{$spacing} {
+      margin-inline: #{$space};
+    }
+    &y-#{$spacing} {
+      margin-block: #{$space};
+    }
+  }
+}
+@each $spacing, $space in map-get(cfg.$tokens, "spacing") {
+  .p {
+    &-#{$spacing} {
+      padding: #{$space};
+    }
+    &t-#{$spacing} {
+      padding-block-start: #{$space};
+    }
+    &b-#{$spacing} {
+      padding-block-end: #{$space};
+    }
+    &l-#{$spacing} {
+      padding-inline-start: #{$space};
+    }
+    &r-#{$spacing} {
+      padding-inline-end: #{$space};
+    }
+    &x-#{$spacing} {
+      padding-inline: #{$space};
+    }
+    &y-#{$spacing} {
+      padding-block: #{$space};
+    }
+  }
+}
